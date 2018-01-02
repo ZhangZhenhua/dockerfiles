@@ -77,3 +77,41 @@ deb http://192.168.1.253/mirrors/ubuntu/ceph/10.2.10-2/ jewel main
 deb http://192.168.1.253/mirrors/ubuntu/saltstack/20171103/ trusty main
 deb http://192.168.1.253/mirrors/ubuntu/zabbix/3.2/ trusty main
 ```
+
+#### 三、pypi
+
+挂载点:
+
+	* /srv/       输出simple目录
+
+运行容器:
+
+```
+$ docker run -it -v /srv/:/srv reprepro bash
+```
+
+制作仓库(容器中运行):
+
+```
+# 下载软件包
+$ pip2tgz /srv/ pip
+$ pip2tgz /srv/ -r packages_list.txt
+# 创建索引
+$ dir2pi -S /srv/
+```
+
+发布包要求:
+
+        * 将/srv/simple拷贝到 /var/www/html/mirrors/pypi/目录
+
+编写pip.conf文件，如:
+
+```
+$ vim /root/.pip/pip.conf
+[global]
+index-url = http://127.0.0.1/simple/
+
+[install]
+trusted-host=127.0.0.1
+```
+
