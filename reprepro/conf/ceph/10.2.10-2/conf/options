@@ -1,5 +1,0 @@
-verbose
-basedir  .
-ask-passphrase
-distdir  /output/ceph/10.2.10-2/dists
-outdir   /output/ceph/10.2.10-2
