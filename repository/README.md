@@ -66,6 +66,7 @@ $ docker build -t repository .
     $ cat example.conf
     [global]
     index-url = http://127.0.0.1/mirrors/pypi/.../.../simple/
+    timeout = 20
     [install]
     trusted-host =  127.0.0.1
     ```
@@ -133,16 +134,17 @@ $ docker build -t repository .
     ```
     $ docker run -v /var/www/html/:/srv/ -it repository bash
     ```
-* 制作仓库:
-
-    ```
-    $ createrepo /srv/source/centos/ceph/10.2.10-2/
-    ```
 
 * 拷贝目录:
 
     ```
     $ cp -r /srv/source/centos/ceph/10.2.10-2/ /srv/mirrors/centos/ceph/10.2.10-2/
+    ```
+
+* 制作仓库:
+
+    ```
+    $ createrepo /srv/mirrors/centos/ceph/10.2.10-2/
     ```
     
 * 提供example.repo
